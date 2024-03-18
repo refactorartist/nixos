@@ -21,6 +21,8 @@ in
       meslo-lgs-nf
       asdf-vm
       docker-compose
+      discord
+      slack
     ];
 
     programs.zsh = {      
