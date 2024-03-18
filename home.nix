@@ -8,6 +8,11 @@ in
   ]; 
 
   virtualisation.docker.enable = true;
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = ["khalid"];
+  };
 
   home-manager.users.khalid = {
     home.stateVersion = "23.11";
@@ -20,8 +25,6 @@ in
       git
       meslo-lgs-nf
       asdf-vm
-      _1password
-      _1password-gui
       docker-compose
     ];
 
