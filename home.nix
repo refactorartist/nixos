@@ -8,11 +8,6 @@ in
   ]; 
 
   virtualisation.docker.enable = true;
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["khalid"];
-  };
 
   home-manager.users.khalid = {
     home.stateVersion = "23.11";
@@ -49,16 +44,6 @@ in
       enable = true;
       enableZshIntegration = true;
     };
-
-    programs.ssh = {
-      enable = true;
-      extraConfig = ''
-        Host *
-          IdentitiesOnly=yes
-          IdentityAgent ~/.1password/agent.sock
-      '';
-    };
-
 
     programs.vscode = {
       enable = true;
