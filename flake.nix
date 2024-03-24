@@ -16,9 +16,6 @@
           system = "x86_64-linux";
           modules = [
             ./configuration.nix
-            ./system/flake_settings.nix
-            ./system/one_password.nix
-            ./system/users.nix
           ];
         };
       };
