@@ -12,10 +12,10 @@
       lib = nixpkgs.lib;
     in {
       nixosConfigurations {
-        nixos = lib.nixosSystem {
+        virtualbox = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./configuration.nix
+            ./virtualbox/configuration.nix
           ];
         };
       };
