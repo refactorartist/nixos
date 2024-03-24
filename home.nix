@@ -1,65 +1,67 @@
-{ config, pkgs, ... }: 
-let 
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-in 
+{ config, pkgs, ... }:
+
 {
-  imports = [
-    (import "${home-manager}/nixos")
-  ]; 
+  home.username = "khalid";
+  home.homeDirectory = "/home/khalid";
 
-  virtualisation.docker.enable = true;
+  home.stateVersion = "23.11"; # Please read the comment before changing.
 
-  home-manager.users.khalid = {
-    home.stateVersion = "23.11";
-    
-    nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
-    home.packages = with pkgs; [
-      google-chrome
-      insomnia
-      git
-      meslo-lgs-nf
-      asdf-vm
-      docker-compose
-      discord
-      slack
-    ];
+  home.packages = [
+    pkgs.google-chrome
+    pkgs.insomnia
+    pkgs.git
+    pkgs.meslo-lgs-nf
+    pkgs.discord
+    pkgs.slack
+    pkgs.asdf-vm
+    pkgs.docker-compose
+  ];
 
-    programs.zsh = {      
-      enable = true;
-      initExtra = ''
-        . "${pkgs.asdf-vm}/share/asdf-vm/asdf.sh"
-      '';
-      enableCompletion = true; 
-      enableAutosuggestions = true;
-      syntaxHighlighting.enable = true;
+  programs.zsh = {
+    enable = true;
+    initExtra = ''
+      . "${pkgs.asdf-vm}/share/asdf-vm/asdf.sh"
+    '';
+    enableCompletion = true; 
+    enableAutosuggestions = true;
+    syntaxHighlighting.enable = true;
 
-      shellAliases = {
-        ll = "ls -l";
-        system-update = "sudo nixos-rebuild switch";
-      };
-    };
-
-    programs.starship.enable = true;
-
-    programs.direnv = {
-      enable = true;
-      enableZshIntegration = true;
-    };
-
-    programs.vscode = {
-      enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        ms-python.python
-        ms-python.vscode-pylance
-        ms-python.isort
-        ms-python.black-formatter
-        charliermarsh.ruff
-        vscode-icons-team.vscode-icons
-        github.copilot-chat
-        gitlab.gitlab-workflow
-        dotenv.dotenv-vscode
-      ];
+    shellAliases = {
+      ll = "ls -l";
     };
   };
+
+  programs.starship.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      bbenoist.nix
+      ms-python.python
+      ms-python.vscode-pylance
+      ms-python.isort
+      ms-python.black-formatter
+      charliermarsh.ruff
+      vscode-icons-team.vscode-icons
+      github.copilot-chat
+      gitlab.gitlab-workflow
+      dotenv.dotenv-vscode
+    ];
+  };
+
+
+  home.file = {
+  };
+
+  home.sessionVariables = {
+  };
+
+  programs.home-manager.enable = true;
 }
