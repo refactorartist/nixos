@@ -11,11 +11,14 @@
     let 
       lib = nixpkgs.lib;
     in {
-      nixosConfigurations {
-        virtualbox = lib.nixosSystem {
+      nixosConfigurations = {
+        nixos = lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./virtualbox/configuration.nix
+            ./configuration.nix
+            ./system/one_password.nix
+            ./system/users.nix
+            ./system/flake_settings.nix
           ];
         };
       };
