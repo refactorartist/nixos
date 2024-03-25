@@ -30,7 +30,13 @@
 
     shellAliases = {
       ll = "ls -l";
-      home-updates = "home-manager switch --flake ~/.dotfiles";
+      home-updates = ''
+        cd ~/.dotfiles &&\
+        git pull &&\
+        home-manager switch --flake ~/.dotfiles &&\
+        git commit -am 'Automated update' &&\
+        git push
+      '';
     };
   };
 
