@@ -30,6 +30,23 @@
 
     shellAliases = {
       ll = "ls -l";
+      home-updates = ''
+        cd ~/.dotfiles &&\
+        git pull &&\
+        home-manager switch --flake ~/.dotfiles &&\
+        git commit -am 'Automated update' &&\
+        git push
+      '';
+      system-updates = ''
+        cd ~/.dotfiles &&\
+        git pull &&\
+        nix flake update &&\
+        sudo nixos-rebuild switch --flake ~/.dotfiles &&\
+        home-manager switch --flake ~/.dotfiles &&\
+        git commit -am 'Automated system update' &&\
+        git push
+      '';
+      gg = "git log --graph --oneline --decorate --all";
     };
   };
 
@@ -53,6 +70,8 @@
       github.copilot-chat
       gitlab.gitlab-workflow
       dotenv.dotenv-vscode
+      mechatroner.rainbow-csv
+      eamodio.gitlens
     ];
   };
 
