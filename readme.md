@@ -95,6 +95,68 @@ $ sudo nixos-rebuild --flake ~/.dotfiles#$YOUR_HOST_NAME
 $ home-manager switch --flake ~/.dotfiles
 ```
 
+## For Non-NixOs (Ubuntu)
+
+### Install Dependencies
+
+```sh
+$ sudo apt-install curl git
+```
+
+### Clone the repository
+
+```sh
+$ git clone REPOSITORY
+```
+
+### Install nix 
+
+```sh
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
+```
+
+And edit your bashrc/zshrc and add the following line
+
+```bash
+. $HOME/.nix-profile/etc/profile.d/nix.sh
+```
+
+### Enable flake 
+
+Edit or create the file 
+
+```
+$ touch ~/.config/nix/nix.conf
+$ nano ~/.config/nix/nix.conf
+```
+
+Add the following
+
+```bash
+experimental-features = nix-command flake
+```
+
+### Install home-manager 
+
+```sh
+$ nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+$ nix-channel --update
+```
+
+and run the installer 
+
+```sh
+$ nix-shell '<home-manager>' -A install
+```
+
+### Enable your home profile 
+
+```sh
+$ home-manager switch --flake ~/.dotfiles 
+```
+
+You're good to go 
+
 
 
 
