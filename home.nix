@@ -71,6 +71,7 @@
       gitlab.gitlab-workflow
       dotenv.dotenv-vscode
       mechatroner.rainbow-csv
+      eamodio.gitlens
     ];
   };
 
