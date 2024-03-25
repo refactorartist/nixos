@@ -3,7 +3,7 @@
   programs.zsh.enable = true;
   users.users.khalid = {
     isNormalUser = true;
-    description = "khalid";
+    description = "Khalid Zubair";
     extraGroups = [ 
       "networkmanager" 
       "wheel" 
