@@ -46,6 +46,7 @@
         git commit -am 'Automated system update' &&\
         git push
       '';
+      gg = "git log --graph --oneline --decorate --all";
     };
   };
 
