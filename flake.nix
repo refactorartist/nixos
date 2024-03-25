@@ -17,19 +17,25 @@
         virtualbox = lib.nixosSystem {
           inherit system;
           modules = [
+            # Copy from /etc/nixos/configuration.nix
             ./hosts/virtualbox/configuration.nix
             ./system/flake_settings.nix
+            # Move users from configuration.nix to users.nix  
             ./system/users.nix
+            # Additional Modules
             ./system/one_password.nix
             ./system/docker.nix
           ];
         };
-        nixos = lib.nixosSystem {
+        work-pc = lib.nixosSystem {
           inherit system;
           modules = [
+            # Copy from /etc/nixos/configuration.nix
             ./configuration.nix
-            ./system/flake_settings.nix
+            ./system/flake_settings.nix  
+            # Move users from configuration.nix to users.nix  
             ./system/users.nix
+            # Additional Modules
             ./system/one_password.nix
             ./system/docker.nix
           ];
@@ -42,6 +48,7 @@
             ./home.nix
           ];
         };
+        # For other users copy from above
       };
     };
 }
