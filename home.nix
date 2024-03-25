@@ -41,7 +41,7 @@
         cd ~/.dotfiles &&\
         git pull &&\
         nix flake update &&\
-        sudo nixos-rebuild --flake ~/.dotfiles &&\
+        sudo nixos-rebuild switch --flake ~/.dotfiles &&\
         home-manager switch --flake ~/.dotfiles &&\
         git commit -am 'Automated system update' &&\
         git push
