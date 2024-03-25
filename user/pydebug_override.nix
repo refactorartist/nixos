@@ -1,6 +1,13 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 {
-    pkgs.python311.debugpy.overrideAttrs (self: super: {
-        pytestCheckPhase = ''true'';
-    });    
+  # Using overlay to override the package
+  nixpkgs.overlays = [
+    (self: super: {
+      python3Packages = super.python3Packages // {
+        pydebug = super.python3Packages.pydebug.overrideAttrs (oldAttrs: {
+            pytestCheckPhase = "true";
+        });
+      };
+    })
+  ];
 }
