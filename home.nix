@@ -40,7 +40,7 @@
       system-updates = ''
         cd ~/.dotfiles &&\
         git pull &&\
-        nix flakes update &&\
+        nix flake update &&\
         sudo nixos-rebuild --flake ~/.dotfiles &&\
         home-manager switch --flake ~/.dotfiles &&\
         git commit -am 'Automated system update' &&\
