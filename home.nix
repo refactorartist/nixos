@@ -37,6 +37,15 @@
         git commit -am 'Automated update' &&\
         git push
       '';
+      system-updates = ''
+        cd ~/.dotfiles &&\
+        git pull &&\
+        nix flakes update &&\
+        sudo nixos-rebuild --flake ~/.dotfiles &&\
+        home-manager switch --flake ~/.dotfiles &&\
+        git commit -am 'Automated system update' &&\
+        git push
+      '';
     };
   };
 
