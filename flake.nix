@@ -46,6 +46,7 @@
           inherit pkgs;
           modules = [
             ./home.nix
+            ./user/pydebug_override.nix
           ];
         };
         # For other users copy from above
