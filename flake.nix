@@ -14,6 +14,16 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
+        virtualbox = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/virtualbox/configuration.nix
+            ./system/flake_settings.nix
+            ./system/users.nix
+            ./system/one_password.nix
+            ./system/docker.nix
+          ];
+        };
         nixos = lib.nixosSystem {
           inherit system;
           modules = [
