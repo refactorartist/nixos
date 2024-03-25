@@ -54,6 +54,7 @@
       github.copilot-chat
       gitlab.gitlab-workflow
       dotenv.dotenv-vscode
+      mechatroner.rainbow-csv
     ];
   };
 
