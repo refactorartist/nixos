@@ -30,6 +30,7 @@
 
     shellAliases = {
       ll = "ls -l";
+      home-updates = "home-manager switch --flake ~/.dotfiles";
     };
   };
 
