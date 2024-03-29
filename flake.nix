@@ -27,14 +27,13 @@
             ./system/docker.nix
           ];
         };
-        work-pc = lib.nixosSystem {
+        khalid-work = lib.nixosSystem {
           inherit system;
           modules = [
             # Copy from /etc/nixos/configuration.nix
-            ./configuration.nix
+            ./hosts/khalid-work/configuration.nix
+            ./hosts/khalid-work/users.nix
             ./system/flake_settings.nix  
-            # Move users from configuration.nix to users.nix  
-            ./system/users.nix
             # Additional Modules
             ./system/one_password.nix
             ./system/docker.nix
