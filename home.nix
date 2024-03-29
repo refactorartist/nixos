@@ -8,6 +8,16 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+        _1password-gui = prev._1password-gui.override {
+          polkitPolicyOwners = [ "khalid" ];
+        };
+      })
+    ];
+  };  
+
   home.packages = [
     pkgs.google-chrome
     pkgs.insomnia
@@ -73,6 +83,12 @@
       mechatroner.rainbow-csv
       eamodio.gitlens
     ];
+  };
+
+  programs.git = {
+    extraConfig = {
+        gpg."ssh".program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+    };
   };
 
 
