@@ -8,15 +8,6 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs = {
-    overlays = [
-      (final: prev: {
-        _1password-gui = prev._1password-gui.override {
-          polkitPolicyOwners = [ "khalid" ];
-        };
-      })
-    ];
-  };  
 
   home.packages = [
     pkgs.google-chrome
@@ -32,7 +23,7 @@
   programs.zsh = {
     enable = true;
     initExtra = ''
-      . "${pkgs.asdf-vm}/share/asdf-vm/asdf.sh"
+      . "$(dirname $(dirname $(readlink -f $(which asdf))))/share/asdf-vm/asdf.sh"
     '';
     enableCompletion = true; 
     enableAutosuggestions = true;
