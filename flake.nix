@@ -5,6 +5,7 @@
     nixpkgs.url = "nixpkgs/nixos-23.11";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    devenv.url = "github:cachix/devenv/latest";
   }; 
 
   outputs = { self, nixpkgs, home-manager, ... }:
@@ -37,6 +38,7 @@
             # Additional Modules
             ./system/one_password.nix
             ./system/docker.nix
+            ./system/devenv.nix
           ];
         };
       };
